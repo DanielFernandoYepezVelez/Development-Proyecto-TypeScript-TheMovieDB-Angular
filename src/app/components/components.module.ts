@@ -10,15 +10,16 @@ import { PeliculasPosterGridComponent } from './peliculas-poster-grid/peliculas-
 
 /* Pipe Modules */
 import { PipesModule } from '../pipes/pipes.module';
+import { CastSlideshowComponent } from './cast-slideshow/cast-slideshow.component';
 
 @NgModule({
-  declarations: [NavbarComponent, SlideshowComponent, PeliculasPosterGridComponent],
+  declarations: [NavbarComponent, SlideshowComponent, PeliculasPosterGridComponent, CastSlideshowComponent],
   imports: [
     CommonModule,
     RouterModule,
     RatingModule,
     PipesModule
   ],
-  exports: [NavbarComponent, SlideshowComponent, PeliculasPosterGridComponent]
+  exports: [NavbarComponent, SlideshowComponent, PeliculasPosterGridComponent, CastSlideshowComponent]
 })
 export class ComponentsModule { }
