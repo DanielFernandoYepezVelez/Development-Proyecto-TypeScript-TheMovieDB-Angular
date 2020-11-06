@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col-md-3 mb-5" *ngFor="let movie of movies">
-        <img class="img-fluid poster" [src]="movie.poster_path | poster" alt="poster_image">
+        <img class="img-fluid poster" [src]="movie.poster_path | poster" (click)="onMovieDetails(movie)" alt="poster_image">
 
         <div>
             <h3>{{ movie.title }}</h3>

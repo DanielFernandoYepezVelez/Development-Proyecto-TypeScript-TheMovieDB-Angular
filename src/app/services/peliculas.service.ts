@@ -5,6 +5,7 @@ import { HttpClient } from '@angular/common/http';
 
 /* Interfaces */
 import { NowPlayingResponse, Movie } from '../interfaces/now-playing.interface';
+import { ResponseMovieDetails } from '../interfaces/response-movie-details.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -25,7 +26,7 @@ export class PeliculasService {
 
   constructor(private http: HttpClient) {}
 
-  getCartelera(): Observable<Movie[]> {
+  public getCartelera(): Observable<Movie[]> {
     if (this.cargando) {
       return of([]);
     }
@@ -43,5 +44,26 @@ export class PeliculasService {
         }),
         map((res) => res.results)
       );
+  }
+
+  public resetCarteleraPage(): void {
+    this.carteleraPage = 1;
+  }
+
+  public buscarPelicula(query: string): Observable<Movie[]> {
+    const params = { ...this.queryParams, page: '1', query };
+
+    return this.http
+      .get<NowPlayingResponse>(`${this.baseUrl}/search/movie`, {
+        params,
+      })
+      .pipe(map((res) => res.results));
+  }
+
+  public getPeliculaDetail(id: string) {
+    return this.http.get<ResponseMovieDetails>(`${this.baseUrl}/movie/${id}`, { 
+      params: this.queryParams
+    });
+
   }
 }
